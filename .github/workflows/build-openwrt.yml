@@ -56,15 +56,6 @@ jobs:
         cd /workdir/
         sudo wget https://golang.google.cn/dl/go1.22.1.linux-amd64.tar.gz
         sudo tar xf go1.22.1.linux-amd64.tar.gz  -C /workdir
-        cat >> ~/.profile <<EOF
-        export GOROOT=/workdir/go
-        export GOPATH=\$HOME/gowork
-        export GOBIN=\$GOPATH/bin
-        export PATH=\$GOPATH:\$GOBIN:\$GOROOT/bin:\$PATH
-        EOF
-        source ~/.profile
-        cat ~/.profile
-        go version
 
     - name: Clone source code
       working-directory: /workdir
@@ -114,6 +105,14 @@ jobs:
       id: compile
       run: |
         cd openwrt
+        cat >> ~/.profile <<EOF
+        export GOROOT=/workdir/go
+        export GOPATH=\$HOME/gowork
+        export GOBIN=\$GOPATH/bin
+        export PATH=\$GOPATH:\$GOBIN:\$GOROOT/bin:\$PATH
+        EOF
+        source ~/.profile
+        cat ~/.profile
         go version
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
