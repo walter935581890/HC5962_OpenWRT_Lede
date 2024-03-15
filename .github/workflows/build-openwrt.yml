@@ -63,7 +63,8 @@ jobs:
         export PATH=$GOPATH:$GOBIN:$GOROOT/bin:$PATH
         EOF
         source ~/.profile
-        go env
+        cat ~/.profile
+        go version
 
     - name: Clone source code
       working-directory: /workdir
