@@ -58,9 +58,9 @@ jobs:
         sudo tar xf go1.22.1.linux-amd64.tar.gz  -C /workdir
         cat >> ~/.profile <<EOF
         export GOROOT=/workdir/go
-        export GOPATH=$HOME/gowork
-        export GOBIN=$GOPATH/bin
-        export PATH=$GOPATH:$GOBIN:$GOROOT/bin:$PATH
+        export GOPATH=\$HOME/gowork
+        export GOBIN=\$GOPATH/bin
+        export PATH=\$GOPATH:\$GOBIN:\$GOROOT/bin:\$PATH
         EOF
         source ~/.profile
         cat ~/.profile
