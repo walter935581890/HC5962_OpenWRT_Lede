@@ -53,17 +53,16 @@ jobs:
         sudo -E apt-get -qq clean
         sudo apt install golang -y
         sudo timedatectl set-timezone "$TZ"
-        sudo mkdir -p /workdir
+        sudo mkdir -p /mnt/workdir
         sudo chown $USER:$GROUPS /workdir
-        cd /workdir/
         go version
 
     - name: Clone source code
-      working-directory: /workdir
+      working-directory: /mnt/workdir
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
       run: |
