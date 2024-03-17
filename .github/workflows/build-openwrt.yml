@@ -114,6 +114,7 @@ jobs:
         ./scripts/feeds update -a
         rm -rf feeds/packages/lang/golang
         git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
+        ./scripts/feeds install -a 
         go version
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
